@@ -1,0 +1,24 @@
+{
+  "name": "plaintext-guard",
+  "version": "0.1.2",
+  "description": "Chrome extension for copying ASCII-safe text from supported AI sites.",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "validate": "node tools/validate-extension.mjs",
+    "package:webstore": "node tools/package-webstore.mjs",
+    "package:all": "npm run validate && npm run package:webstore"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bidney/PlainTextGuard.git"
+  },
+  "keywords": [
+    "chrome-extension",
+    "manifest-v3",
+    "ascii",
+    "plaintext",
+    "unicode",
+    "copy"
+  ]
+}

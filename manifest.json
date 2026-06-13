@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "PlainText Guard",
+  "short_name": "PlainText Guard",
+  "version": "0.1.2",
+  "description": "Copy clean ASCII-safe text from supported AI sites without reading the clipboard in the background.",
+  "homepage_url": "https://github.com/bidney/PlainTextGuard",
+  "permissions": [
+    "storage",
+    "clipboardWrite"
+  ],
+  "action": {
+    "default_title": "PlainText Guard",
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "assets/icon16.png",
+      "48": "assets/icon48.png",
+      "128": "assets/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*",
+        "https://chat.deepseek.com/*",
+        "https://www.perplexity.ai/*",
+        "https://perplexity.ai/*",
+        "https://poe.com/*",
+        "https://copilot.microsoft.com/*",
+        "https://grok.com/*",
+        "https://you.com/*",
+        "https://huggingface.co/chat/*"
+      ],
+      "js": [
+        "src/rules.js",
+        "src/ai-copy-guard.js"
+      ],
+      "css": [
+        "src/ai-copy-guard.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  }
+}

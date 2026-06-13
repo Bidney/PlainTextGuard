@@ -1,0 +1,137 @@
+.ptg-toast,
+.ptg-panel {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #172033;
+}
+
+.ptg-toast {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2147483647;
+  max-width: 360px;
+  padding: 12px 14px;
+  border: 1px solid #b8c0cc;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.ptg-toast-success {
+  border-color: #3f8f55;
+  background: #edf8f0;
+}
+
+.ptg-toast-warn {
+  border-color: #d2a200;
+  background: #fff8dc;
+}
+
+.ptg-panel-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.ptg-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2147483647;
+  width: 430px;
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+  padding: 16px;
+  border: 1px solid #aeb7c4;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+  font-size: 14px;
+  line-height: 1.42;
+}
+
+.ptg-title {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.ptg-subtitle {
+  margin: 0 0 12px;
+  color: #526071;
+}
+
+.ptg-section-title {
+  margin: 12px 0 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #172033;
+}
+
+.ptg-list {
+  margin: 6px 0 0;
+  padding-left: 18px;
+}
+
+.ptg-list li {
+  margin: 3px 0;
+}
+
+.ptg-note {
+  margin-top: 10px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  background: #f2f5f8;
+  color: #3b4654;
+  font-size: 13px;
+}
+
+.ptg-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.ptg-button {
+  border: 1px solid #9aa4b2;
+  border-radius: 8px;
+  padding: 8px 11px;
+  background: #ffffff;
+  color: #172033;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.ptg-button:hover {
+  background: #f3f6fa;
+}
+
+.ptg-button-primary {
+  border-color: #172033;
+  background: #172033;
+  color: #ffffff;
+}
+
+.ptg-button-primary:hover {
+  background: #27344a;
+}
+
+.ptg-button-danger {
+  border-color: #b0b5bc;
+  color: #526071;
+}
+
+.ptg-kbd {
+  border: 1px solid #ccd3dd;
+  border-radius: 4px;
+  padding: 1px 4px;
+  background: #f7f9fb;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PlainText Guard</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="popup">
+    <header>
+      <h1>PlainText Guard</h1>
+      <p>Copy ASCII-safe text from supported AI sites.</p>
+    </header>
+
+    <section class="card">
+      <h2>Mode</h2>
+
+      <label class="option">
+        <input type="radio" name="mode" value="warn">
+        <span>
+          <strong>ASCII Warning</strong>
+          <small>Warn before copying cleaned text.</small>
+        </span>
+      </label>
+
+      <label class="option">
+        <input type="radio" name="mode" value="auto">
+        <span>
+          <strong>Auto ASCII Copy</strong>
+          <small>Automatically copy the cleaned version.</small>
+        </span>
+      </label>
+
+      <label class="option">
+        <input type="radio" name="mode" value="review">
+        <span>
+          <strong>Style Review</strong>
+          <small>Show formatting issues and optional review phrases. This is not AI detection.</small>
+        </span>
+      </label>
+    </section>
+
+    <section class="card">
+      <h2>Cleanup level</h2>
+
+      <label class="check">
+        <input type="checkbox" id="strictAscii">
+        <span>
+          <strong>Strict ASCII</strong>
+          <small>After safe replacements, remove all remaining non-ASCII characters.</small>
+        </span>
+      </label>
+
+      <label class="check">
+        <input type="checkbox" id="showSuccessToast">
+        <span>
+          <strong>Show success toast</strong>
+          <small>Show a short message when Auto ASCII Copy cleans text.</small>
+        </span>
+      </label>
+    </section>
+
+    <section class="card privacy">
+      <h2>Privacy</h2>
+      <ul>
+        <li>Runs only on supported AI sites.</li>
+        <li>Checks only selected text during a user copy action.</li>
+        <li>Does not read the clipboard in the background.</li>
+        <li>Does not upload or store copied text.</li>
+      </ul>
+    </section>
+
+    <p id="status" class="status" aria-live="polite"></p>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>
