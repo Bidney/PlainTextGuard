@@ -2,6 +2,22 @@
 
 All notable changes to PlainText Guard are documented here.
 
+## 0.3.0 - 2026-07-09
+
+Secret paste guard and detection quality overhaul.
+
+- Added the paste guard: pasting text that contains an API key, access token, JWT, or private key block on a supported AI site now shows a blocking dialog with Paste without secrets, Paste anyway, and Cancel. Detection uses vendor-anchored patterns (AWS, GitHub, Slack, Stripe, Google, OpenAI, Anthropic), validated JWT structure, PEM blocks, and context-gated entropy as a last resort. Everything runs locally.
+- Lower-confidence matches warn without blocking the paste.
+- Accented letters, other languages, currency symbols, and emoji are no longer treated as issues in Warn and Auto modes. They are only removed when Strict ASCII is on.
+- Strict ASCII now transliterates accented letters instead of deleting them, so "cafe" with an accent stays "cafe".
+- Added detection of hidden and deceptive characters: bidirectional controls, invisible operators, tag characters, and mixed-script lookalike letters inside Latin words. These are always flagged and the invisible ones are always stripped.
+- Removed the review phrases that matched ordinary writing (single words such as "robust" and "leverage", and the from-X-to-Y pattern).
+- The Auto mode toast now reports only characters that were actually changed.
+- The warning panel shows a before/after preview with the changing characters highlighted.
+- All in-page UI moved into a closed shadow root so page scripts and styles cannot read, spoof, or interfere with it. The dialog traps focus and supports dark mode, as does the popup.
+- Added a keyboard shortcut (Alt+Shift+P by default) to toggle the extension.
+- Added a CI workflow that validates the manifest, syntax-checks all scripts, runs the secret-detector regression gate, and builds the package.
+
 ## 0.2.0 - 2026-07-09
 
 On/off toggles.

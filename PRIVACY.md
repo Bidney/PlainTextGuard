@@ -6,20 +6,27 @@ PlainText Guard is a Chrome extension that helps users copy ASCII-safe text from
 
 ## Summary
 
-PlainText Guard processes selected text locally in the browser during user-initiated copy actions on supported AI sites.
+PlainText Guard processes selected text locally in the browser during user-initiated copy actions on supported AI sites, and checks pasted text locally during user-initiated paste actions on those same sites to warn about credentials before they reach the chat.
 
 PlainText Guard does not sell data, does not upload copied text, does not store copied text, and does not read the clipboard in the background.
 
 ## What the extension accesses
 
-PlainText Guard accesses only the text the user selected on a supported AI site at the moment the user initiates a copy action.
+PlainText Guard accesses only:
 
-The extension uses that selected text to detect and optionally replace non-ASCII formatting characters such as smart quotes, em dashes, en dashes, ellipses, non-breaking spaces, zero-width characters, bullets, arrows, and similar characters.
+- the text the user selected on a supported AI site at the moment the user initiates a copy action, and
+- the text being pasted on a supported AI site at the moment the user initiates a paste action.
+
+Copied text is used to detect and optionally replace non-ASCII formatting characters such as smart quotes, em dashes, en dashes, ellipses, non-breaking spaces, zero-width characters, bullets, arrows, and similar characters.
+
+Pasted text is checked in memory against local credential patterns (for example API key and private key formats) so the user can be warned before a secret reaches the chat. Pasted text and any detected findings are never stored, logged, or transmitted.
 
 ## What the extension stores
 
 PlainText Guard stores only user settings, such as:
 
+- on/off toggles, including the per-site disabled list (hostnames only)
+- paste guard setting
 - selected mode
 - Strict ASCII setting
 - success toast preference

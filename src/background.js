@@ -146,6 +146,14 @@ chrome.runtime.onStartup.addListener(() => {
 
 chrome.contextMenus.onClicked.addListener(handleMenuClick);
 
+chrome.commands.onCommand.addListener((command) => {
+  if (command !== "toggle-guard") return;
+
+  getState((state) => {
+    chrome.storage.sync.set({ enabled: !state.enabled });
+  });
+});
+
 chrome.tabs.onActivated.addListener(refreshUi);
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
