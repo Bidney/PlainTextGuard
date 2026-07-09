@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "PlainText Guard",
   "short_name": "PlainText Guard",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Copy clean ASCII-safe text from supported AI sites without reading the clipboard in the background.",
   "homepage_url": "https://github.com/bidney/PlainTextGuard",
   "permissions": [
@@ -40,14 +40,21 @@
       ],
       "js": [
         "src/rules.js",
-        "src/ai-copy-guard.js"
-      ],
-      "css": [
-        "src/ai-copy-guard.css"
+        "src/secret-rules.js",
+        "src/ai-copy-guard.js",
+        "src/paste-guard.js"
       ],
       "run_at": "document_idle"
     }
   ],
+  "commands": {
+    "toggle-guard": {
+      "suggested_key": {
+        "default": "Alt+Shift+P"
+      },
+      "description": "Toggle PlainText Guard on or off"
+    }
+  },
   "icons": {
     "16": "assets/icon16.png",
     "48": "assets/icon48.png",

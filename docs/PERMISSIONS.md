@@ -10,6 +10,7 @@ Stored settings include:
 
 - master on/off toggle
 - per-site disabled list (hostnames only)
+- paste guard toggle
 - selected mode
 - Strict ASCII toggle
 - success toast preference
@@ -41,4 +42,6 @@ PlainText Guard does not use:
 
 ## Host access
 
-The content script is limited to supported AI assistant sites. The extension does not run on arbitrary websites and does not monitor paste destinations.
+The content script is limited to supported AI assistant sites. The extension does not run on arbitrary websites and does not monitor where users paste text elsewhere.
+
+The paste guard reads pasted text only from the paste event on supported AI sites. This is standard page-level event access and needs no extra permission; it is not background clipboard reading.

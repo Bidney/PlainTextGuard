@@ -4,6 +4,7 @@
   const DEFAULT_SETTINGS = {
     enabled: true,
     disabledSites: [],
+    pasteGuard: true,
     mode: "warn",
     strictAscii: false,
     showSuccessToast: true
@@ -16,6 +17,7 @@
   const enabledSiteEl = document.getElementById("enabledSite");
   const siteToggleTitleEl = document.getElementById("siteToggleTitle");
   const siteToggleNoteEl = document.getElementById("siteToggleNote");
+  const pasteGuardEl = document.getElementById("pasteGuard");
   const strictAsciiEl = document.getElementById("strictAscii");
   const showSuccessToastEl = document.getElementById("showSuccessToast");
 
@@ -54,6 +56,7 @@
       if (modeEl) modeEl.checked = true;
 
       enabledGlobalEl.checked = settings.enabled !== false;
+      pasteGuardEl.checked = settings.pasteGuard !== false;
       strictAsciiEl.checked = Boolean(settings.strictAscii);
       showSuccessToastEl.checked = settings.showSuccessToast !== false;
 
@@ -119,6 +122,10 @@
 
       saveSetting("disabledSites", disabledSites);
     });
+  });
+
+  pasteGuardEl.addEventListener("change", () => {
+    saveSetting("pasteGuard", pasteGuardEl.checked);
   });
 
   strictAsciiEl.addEventListener("change", () => {

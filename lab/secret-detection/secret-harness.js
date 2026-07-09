@@ -2,7 +2,7 @@
 // (secret-rules.js) over synthetic positives and hard negatives.
 "use strict";
 
-const detector = require("./secret-rules");
+const detector = require("../../src/secret-rules");
 const { positives, negatives } = require("./secret-corpus");
 
 function overlapsSecret(finding, secret) {
@@ -133,3 +133,7 @@ if (fpOnPositives.length) {
   console.log("\nSpurious findings on positive samples (matched something other than the planted secret):");
   for (const f of fpOnPositives) console.log("  " + f.sample + "  " + f.rule + "  [" + f.confidence + "]  " + f.preview);
 }
+
+const gateFailed = highOnNegatives.length > 0 || mediumOnNegatives.length > 2 || fnDetails.length > 0;
+console.log("\nACCEPTANCE GATE: " + (gateFailed ? "FAIL" : "PASS"));
+if (gateFailed) process.exit(1);
