@@ -1,6 +1,6 @@
 {
   "name": "plaintext-guard",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Chrome extension for copying ASCII-safe text from supported AI sites.",
   "private": true,
   "license": "MIT",

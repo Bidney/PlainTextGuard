@@ -29,14 +29,19 @@ if (permissions.includes("clipboardRead")) {
   fail("clipboardRead permission is not allowed for this project");
 }
 
-const allowedPermissions = new Set(["storage", "clipboardWrite"]);
+const allowedPermissions = new Set(["storage", "clipboardWrite", "contextMenus"]);
 for (const permission of permissions) {
   if (!allowedPermissions.has(permission)) {
     fail(`Unexpected permission: ${permission}`);
   }
 }
 
+if (manifest.background && manifest.background.service_worker) {
+  assertFile(manifest.background.service_worker);
+}
+
 assertFile("src/rules.js");
+assertFile("src/background.js");
 assertFile("src/ai-copy-guard.js");
 assertFile("src/ai-copy-guard.css");
 assertFile("src/popup.html");

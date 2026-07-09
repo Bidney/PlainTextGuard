@@ -8,7 +8,7 @@ PlainText Guard is not an AI detector and is not positioned as a tool to hide AI
 
 ## Current status
 
-Version: 0.1.2
+Version: 0.2.0
 
 This is an MVP release intended for invite-only beta distribution through the Chrome Web Store or local unpacked testing.
 
@@ -58,6 +58,15 @@ Automatically copies the cleaned ASCII-safe version when copied AI-site text con
 
 Shows ASCII formatting issues and optional review phrases that may sound generic or over-polished. These are style hints only. They do not prove AI authorship.
 
+## Turning it on and off
+
+Two toggles control when PlainText Guard runs:
+
+- Master toggle: right-click the toolbar icon and use `Enabled`, or open the popup.
+- Per-site toggle: right-click the toolbar icon on a supported AI site and use `Enabled on <site>`, or open the popup on that site.
+
+When the extension is off for the current site, the toolbar icon shows an `OFF` badge and copy events pass through untouched.
+
 ## Privacy design
 
 PlainText Guard is designed to minimize access:
@@ -75,12 +84,13 @@ See [PRIVACY.md](PRIVACY.md) for the full privacy policy.
 
 ## Permissions
 
-The extension uses only two Chrome permissions:
+The extension uses only three Chrome permissions:
 
-- `storage`: saves the user's mode and popup settings.
+- `storage`: saves the user's toggles, mode, and popup settings.
 - `clipboardWrite`: writes the cleaned text to the clipboard after a user copy action or after the user clicks Copy ASCII-safe.
+- `contextMenus`: shows the on/off checkboxes when right-clicking the toolbar icon.
 
-It does not use `clipboardRead`.
+It does not use `clipboardRead`. See [docs/PERMISSIONS.md](docs/PERMISSIONS.md) for details.
 
 ## Local installation
 
@@ -102,7 +112,7 @@ To build the upload ZIP:
 npm run package:webstore
 ```
 
-The output is written to `dist/plaintext-guard-webstore-0.1.2.zip`.
+The output is written to `dist/plaintext-guard-webstore-0.2.0.zip`.
 
 ## Test text
 
@@ -131,7 +141,7 @@ LICENSE                 Project license
 
 ## Development notes
 
-This MVP intentionally avoids a background service worker. The content script runs only on supported AI sites and handles user-initiated copy events.
+The content script runs only on supported AI sites and handles user-initiated copy events. A small event-driven background service worker manages the icon right-click menu and the OFF badge; it makes no network calls and never reads page content or the clipboard.
 
 ## License
 

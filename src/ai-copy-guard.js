@@ -2,6 +2,8 @@
   "use strict";
 
   const DEFAULT_SETTINGS = {
+    enabled: true,
+    disabledSites: [],
     mode: "warn",
     strictAscii: false,
     showSuccessToast: true
@@ -256,7 +258,9 @@
     copyCleaned.textContent = settings.mode === "review" && !analysis.hasAsciiIssues
       ? "Copy text"
       : "Copy ASCII-safe";
-    copyCleaned.addEventListener("click", () => {
+    copyCleaned.addEventListener("click", (clickEvent) => {
+      // Ignore synthetic clicks from page scripts; only real user input may copy.
+      if (!clickEvent.isTrusted) return;
       if (!pendingCopy) return;
       copyAndClose(pendingCopy.cleanedText, "Copied ASCII-safe text.");
     });
@@ -265,7 +269,8 @@
     const copyOriginal = document.createElement("button");
     copyOriginal.className = "ptg-button";
     copyOriginal.textContent = "Copy original";
-    copyOriginal.addEventListener("click", () => {
+    copyOriginal.addEventListener("click", (clickEvent) => {
+      if (!clickEvent.isTrusted) return;
       if (!pendingCopy) return;
       copyAndClose(pendingCopy.originalText, "Copied original text.");
     });
@@ -289,9 +294,17 @@
     copyCleaned.focus();
   }
 
+  function isEnabledHere() {
+    if (!settings || settings.enabled === false) return false;
+
+    const disabledSites = Array.isArray(settings.disabledSites) ? settings.disabledSites : [];
+    return !disabledSites.includes(window.location.hostname);
+  }
+
   function shouldHandleCopy() {
     if (!window.PlainTextGuardRules) return false;
     if (!settings || !settings.mode) return false;
+    if (!isEnabledHere()) return false;
     return ["warn", "auto", "review"].includes(settings.mode);
   }
 
