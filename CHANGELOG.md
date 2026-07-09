@@ -2,6 +2,18 @@
 
 All notable changes to PlainText Guard are documented here.
 
+## 0.2.0 - 2026-07-09
+
+On/off toggles.
+
+- Added a master on/off toggle, available by right-clicking the toolbar icon and in the popup.
+- Added a per-site toggle, available in the same right-click menu and in the popup on supported sites.
+- Added an OFF badge on the toolbar icon when the extension is disabled for the current site.
+- Added a background service worker to manage the icon menu and badge. It is event-driven, makes no network calls, and never touches page or clipboard content.
+- Added the contextMenus permission for the icon right-click menu.
+- Hardened the popup: stored mode values are validated against the known mode list before use.
+- Hardened the copy review panel: the copy buttons now ignore synthetic clicks from page scripts.
+
 ## 0.1.2 - 2026-06-13
 
 Distribution package release.

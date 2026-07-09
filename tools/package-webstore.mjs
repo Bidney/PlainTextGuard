@@ -13,6 +13,7 @@ if (fs.existsSync(outputPath)) fs.rmSync(outputPath);
 
 const files = [
   "manifest.json",
+  "src/background.js",
   "src/rules.js",
   "src/ai-copy-guard.js",
   "src/ai-copy-guard.css",
