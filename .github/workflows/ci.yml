@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Syntax check
+        run: |
+          for f in src/*.js tools/*.mjs lab/secret-detection/*.js; do
+            node --check "$f"
+          done
+
+      - name: Validate extension
+        run: npm run validate
+
+      - name: Secret detector regression gate
+        run: node lab/secret-detection/secret-harness.js
+
+      - name: False-positive report (informational)
+        run: node lab/secret-detection/fp-harness.js || true
+
+      - name: Package
+        run: npm run package:webstore

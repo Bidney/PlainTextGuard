@@ -28,4 +28,4 @@ PlainText Guard is designed to minimize data exposure:
 
 ## Out of scope
 
-PlainText Guard is not a secret scanner, password manager, DLP product, malware scanner, or AI detector.
+PlainText Guard includes a local paste guard that recognizes common credential formats before they reach a supported AI site. It is still not a complete DLP product, password manager, malware scanner, or AI detector, and it cannot catch every secret format. Do not rely on it as the only control against credential leaks.

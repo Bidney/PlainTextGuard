@@ -15,11 +15,156 @@
     review: "Style Review"
   };
 
+  const PREVIEW_LIMIT = 200;
+
+  // All UI lives in a closed shadow root so page scripts cannot read the
+  // panel, restyle it through our class names, or reach the buttons.
+  const UI_CSS = `
+    :host { all: initial; }
+
+    .ptg-toast,
+    .ptg-panel {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #172033;
+    }
+
+    .ptg-toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 2147483647;
+      max-width: 360px;
+      padding: 12px 14px;
+      border: 1px solid #b8c0cc;
+      border-radius: 10px;
+      background: #ffffff;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .ptg-toast-success { border-color: #3f8f55; background: #edf8f0; }
+    .ptg-toast-warn { border-color: #d2a200; background: #fff8dc; }
+
+    .ptg-panel-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 2147483646;
+      background: rgba(0, 0, 0, 0.22);
+    }
+
+    .ptg-panel {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 2147483647;
+      width: 430px;
+      max-width: calc(100vw - 40px);
+      max-height: calc(100vh - 40px);
+      overflow: auto;
+      padding: 16px;
+      border: 1px solid #aeb7c4;
+      border-radius: 12px;
+      background: #ffffff;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+      font-size: 14px;
+      line-height: 1.42;
+    }
+
+    .ptg-title { margin: 0 0 6px; font-size: 16px; font-weight: 700; }
+    .ptg-subtitle { margin: 0 0 12px; color: #526071; }
+    .ptg-section-title { margin: 12px 0 6px; font-size: 13px; font-weight: 700; }
+    .ptg-list { margin: 6px 0 0; padding-left: 18px; }
+    .ptg-list li { margin: 3px 0; }
+
+    .ptg-note {
+      margin-top: 10px;
+      padding: 9px 10px;
+      border-radius: 8px;
+      background: #f2f5f8;
+      color: #3b4654;
+      font-size: 13px;
+    }
+
+    .ptg-preview {
+      margin: 4px 0 0;
+      padding: 8px 10px;
+      border: 1px solid #d7dee8;
+      border-radius: 8px;
+      background: #f8fafc;
+      font-family: Consolas, Menlo, monospace;
+      font-size: 12px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 96px;
+      overflow: auto;
+    }
+
+    .ptg-preview-label { margin-top: 8px; font-size: 12px; font-weight: 700; color: #526071; }
+
+    .ptg-hl {
+      background: #ffe2a8;
+      border-radius: 3px;
+      outline: 1px solid #d2a200;
+    }
+
+    .ptg-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+
+    .ptg-button {
+      border: 1px solid #9aa4b2;
+      border-radius: 8px;
+      padding: 8px 11px;
+      background: #ffffff;
+      color: #172033;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .ptg-button:hover { background: #f3f6fa; }
+    .ptg-button:focus-visible { outline: 2px solid #2563eb; outline-offset: 1px; }
+    .ptg-button-primary { border-color: #172033; background: #172033; color: #ffffff; }
+    .ptg-button-primary:hover { background: #27344a; }
+    .ptg-button-danger { border-color: #b0b5bc; color: #526071; }
+
+    @media (prefers-color-scheme: dark) {
+      .ptg-toast, .ptg-panel { color: #e6eaf0; background: #1d2532; border-color: #3a4557; }
+      .ptg-toast-success { background: #17301f; border-color: #3f8f55; }
+      .ptg-toast-warn { background: #33290d; border-color: #d2a200; }
+      .ptg-subtitle, .ptg-preview-label { color: #9aa7b8; }
+      .ptg-note { background: #26303f; color: #c2ccd9; }
+      .ptg-preview { background: #161d28; border-color: #3a4557; }
+      .ptg-hl { background: #7a5b00; outline-color: #d2a200; }
+      .ptg-button { background: #26303f; color: #e6eaf0; border-color: #4b5769; }
+      .ptg-button:hover { background: #313d4f; }
+      .ptg-button-primary { background: #e6eaf0; color: #1d2532; border-color: #e6eaf0; }
+      .ptg-button-primary:hover { background: #ccd5e0; }
+      .ptg-button-danger { color: #9aa7b8; }
+    }
+  `;
+
   let settings = Object.assign({}, DEFAULT_SETTINGS);
+  let uiRoot = null;
   let activePanel = null;
   let activeBackdrop = null;
   let activeToast = null;
   let pendingCopy = null;
+
+  function ensureUiRoot() {
+    if (uiRoot) return uiRoot;
+
+    const host = document.createElement("div");
+    host.style.all = "initial";
+    uiRoot = host.attachShadow({ mode: "closed" });
+
+    const style = document.createElement("style");
+    style.textContent = UI_CSS;
+    uiRoot.appendChild(style);
+
+    document.documentElement.appendChild(host);
+    return uiRoot;
+  }
 
   function loadSettings() {
     if (!chrome || !chrome.storage || !chrome.storage.sync) return;
@@ -62,7 +207,7 @@
     activeToast = document.createElement("div");
     activeToast.className = "ptg-toast " + (kind === "warn" ? "ptg-toast-warn" : "ptg-toast-success");
     activeToast.textContent = message;
-    document.documentElement.appendChild(activeToast);
+    ensureUiRoot().appendChild(activeToast);
 
     window.setTimeout(removeToast, 2200);
   }
@@ -88,11 +233,16 @@
         : `${finding.count} x ${finding.label}`;
     }
 
-    const replacement = finding.replacement === null
-      ? "not replaced in safe mode"
-      : `replace with ${JSON.stringify(finding.replacement)}`;
+    let action;
+    if (finding.replacement === null) {
+      action = "kept in safe mode";
+    } else if (finding.replacement === "") {
+      action = "removed";
+    } else {
+      action = `replace with ${JSON.stringify(finding.replacement)}`;
+    }
 
-    return `${finding.count} x ${finding.label} (${finding.codePoint}), ${replacement}`;
+    return `${finding.count} x ${finding.label} (${finding.codePoint}), ${action}`;
   }
 
   function appendFindingsSection(parent, title, findings, limit) {
@@ -119,6 +269,72 @@
     }
 
     parent.appendChild(list);
+  }
+
+  // Before/after preview with the characters that will change highlighted.
+  function appendPreviewSection(parent, originalText, cleanedText, analysis) {
+    const changingChars = new Set();
+
+    for (const finding of analysis.replacementFindings.concat(analysis.suspiciousFindings)) {
+      changingChars.add(finding.char);
+    }
+
+    if (settings.strictAscii) {
+      for (const finding of analysis.unknownFindings) {
+        changingChars.add(finding.char);
+      }
+    }
+
+    if (changingChars.size === 0) return;
+
+    const beforeLabel = document.createElement("div");
+    beforeLabel.className = "ptg-preview-label";
+    beforeLabel.textContent = originalText.length > PREVIEW_LIMIT
+      ? `Before (first ${PREVIEW_LIMIT} characters, changes highlighted)`
+      : "Before (changes highlighted)";
+    parent.appendChild(beforeLabel);
+
+    const before = document.createElement("div");
+    before.className = "ptg-preview";
+
+    let shown = 0;
+    let run = "";
+
+    const flushRun = () => {
+      if (run) {
+        before.appendChild(document.createTextNode(run));
+        run = "";
+      }
+    };
+
+    for (const char of originalText) {
+      if (shown >= PREVIEW_LIMIT) break;
+      shown += 1;
+
+      if (changingChars.has(char)) {
+        flushRun();
+        const mark = document.createElement("span");
+        mark.className = "ptg-hl";
+        // Make invisible characters visible in the preview.
+        mark.textContent = /\s/.test(char) ? "·" : char;
+        mark.title = "U+" + char.codePointAt(0).toString(16).toUpperCase().padStart(4, "0");
+        before.appendChild(mark);
+      } else {
+        run += char;
+      }
+    }
+    flushRun();
+    parent.appendChild(before);
+
+    const afterLabel = document.createElement("div");
+    afterLabel.className = "ptg-preview-label";
+    afterLabel.textContent = "After";
+    parent.appendChild(afterLabel);
+
+    const after = document.createElement("div");
+    after.className = "ptg-preview";
+    after.textContent = cleanedText.slice(0, PREVIEW_LIMIT);
+    parent.appendChild(after);
   }
 
   async function writeToClipboard(text) {
@@ -201,10 +417,32 @@
     }, 0);
   }
 
+  function trapFocus(panel, buttons) {
+    panel.addEventListener("keydown", (event) => {
+      if (event.key !== "Tab") return;
+
+      const enabled = buttons.filter((button) => !button.disabled);
+      if (enabled.length === 0) return;
+
+      const current = enabled.indexOf(uiRoot.activeElement);
+      let next;
+
+      if (event.shiftKey) {
+        next = current <= 0 ? enabled.length - 1 : current - 1;
+      } else {
+        next = current === -1 || current === enabled.length - 1 ? 0 : current + 1;
+      }
+
+      event.preventDefault();
+      enabled[next].focus();
+    });
+  }
+
   function showCopyChoice(originalText, cleanedText, analysis) {
     clearPanel();
 
     pendingCopy = { originalText, cleanedText };
+    const root = ensureUiRoot();
 
     activeBackdrop = document.createElement("div");
     activeBackdrop.className = "ptg-panel-backdrop";
@@ -213,33 +451,45 @@
     activePanel = document.createElement("div");
     activePanel.className = "ptg-panel";
     activePanel.setAttribute("role", "dialog");
+    activePanel.setAttribute("aria-modal", "true");
     activePanel.setAttribute("aria-label", "PlainText Guard copy review");
 
     const title = document.createElement("div");
     title.className = "ptg-title";
     title.textContent = settings.mode === "review"
       ? "PlainText Guard style review"
-      : "PlainText Guard found non-ASCII text";
+      : "PlainText Guard found formatting issues";
     activePanel.appendChild(title);
 
     const subtitle = document.createElement("div");
     subtitle.className = "ptg-subtitle";
     subtitle.textContent = settings.mode === "review"
       ? "Review copied text from this AI site before it reaches client work. These are not AI-detection claims."
-      : "Choose whether to copy the ASCII-safe version or keep the original text.";
+      : "Choose whether to copy the cleaned version or keep the original text.";
     activePanel.appendChild(subtitle);
 
     appendFindingsSection(activePanel, "ASCII formatting issues", analysis.replacementFindings, 10);
-    appendFindingsSection(activePanel, "Other non-ASCII characters", analysis.unknownFindings, 10);
+    appendFindingsSection(activePanel, "Hidden or deceptive characters", analysis.suspiciousFindings, 10);
+
+    if (analysis.unknownFindings.length > 0) {
+      appendFindingsSection(
+        activePanel,
+        settings.strictAscii ? "Other non-ASCII characters (removed in Strict ASCII)" : "Other non-ASCII characters (kept)",
+        analysis.unknownFindings,
+        10
+      );
+    }
 
     if (settings.mode === "review") {
       appendFindingsSection(activePanel, "Review phrases", analysis.reviewFindings, 8);
     }
 
+    appendPreviewSection(activePanel, originalText, cleanedText, analysis);
+
     if (!settings.strictAscii && analysis.unknownFindings.length > 0) {
       const note = document.createElement("div");
       note.className = "ptg-note";
-      note.textContent = "Safe mode only replaces common punctuation and invisible formatting. Turn on Strict ASCII in the popup to remove all remaining non-ASCII characters.";
+      note.textContent = "Accents, other languages, and emoji are kept as-is. Turn on Strict ASCII in the popup to transliterate accents and remove the rest.";
       activePanel.appendChild(note);
     }
 
@@ -257,12 +507,12 @@
     copyCleaned.className = "ptg-button ptg-button-primary";
     copyCleaned.textContent = settings.mode === "review" && !analysis.hasAsciiIssues
       ? "Copy text"
-      : "Copy ASCII-safe";
+      : "Copy cleaned";
     copyCleaned.addEventListener("click", (clickEvent) => {
       // Ignore synthetic clicks from page scripts; only real user input may copy.
       if (!clickEvent.isTrusted) return;
       if (!pendingCopy) return;
-      copyAndClose(pendingCopy.cleanedText, "Copied ASCII-safe text.");
+      copyAndClose(pendingCopy.cleanedText, "Copied cleaned text.");
     });
     actions.appendChild(copyCleaned);
 
@@ -289,8 +539,10 @@
     footnote.textContent = `Mode: ${MODE_LABELS[settings.mode] || "PlainText Guard"}. Text is processed locally and not stored.`;
     activePanel.appendChild(footnote);
 
-    document.documentElement.appendChild(activeBackdrop);
-    document.documentElement.appendChild(activePanel);
+    trapFocus(activePanel, [copyCleaned, copyOriginal, cancel]);
+
+    root.appendChild(activeBackdrop);
+    root.appendChild(activePanel);
     copyCleaned.focus();
   }
 
@@ -335,7 +587,7 @@
       if (settings.showSuccessToast) {
         const count = analysis.totalAsciiIssueCount;
         const message = wroteToEvent
-          ? `Copied ASCII-safe text. Cleaned ${count} issue${count === 1 ? "" : "s"}.`
+          ? `Copied cleaned text. Fixed ${count} character${count === 1 ? "" : "s"}.`
           : "PlainText Guard could not modify this copy event. Try ASCII Warning mode.";
         showToast(message, wroteToEvent ? "success" : "warn");
       }

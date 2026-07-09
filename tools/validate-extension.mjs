@@ -41,9 +41,10 @@ if (manifest.background && manifest.background.service_worker) {
 }
 
 assertFile("src/rules.js");
+assertFile("src/secret-rules.js");
 assertFile("src/background.js");
 assertFile("src/ai-copy-guard.js");
-assertFile("src/ai-copy-guard.css");
+assertFile("src/paste-guard.js");
 assertFile("src/popup.html");
 assertFile("src/popup.js");
 assertFile("src/popup.css");

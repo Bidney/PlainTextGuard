@@ -15,9 +15,9 @@ Measurement of the current rules' false-positive rate, and a prototype for the p
 
 Measured on 2026-07-09: with review phrases on, 33 of 45 benign samples were flagged. The worst offenders were the catch-all non-ASCII rule (all non-English text), the `from X to Y` review regex, and single-word review phrases such as `robust` and `unlock`.
 
-### Secret detector prototype
+### Secret detector
 
-- `secret-rules.js` is a dependency-free detector for credentials pasted into AI sites: vendor-anchored patterns (AWS, GitHub, Slack, Stripe, Google, OpenAI, Anthropic), structure-validated JWTs, PEM private key blocks, and a last-resort context-gated entropy rule. Findings carry a confidence tier (high or medium) and a redacted preview.
+- The detector itself lives at `src/secret-rules.js` and ships with the extension (the paste guard uses it). It is dependency-free: vendor-anchored patterns (AWS, GitHub, Slack, Stripe, Google, OpenAI, Anthropic), structure-validated JWTs, PEM private key blocks, and a last-resort context-gated entropy rule. Findings carry a confidence tier (high or medium) and a redacted preview.
 - `secret-corpus.js` holds synthetic positives (fake secrets built programmatically, none real) and hard negatives (git SHAs, UUIDs, data URIs, lockfile hashes, Docker digests, redacted placeholders).
 - `secret-harness.js` reports precision and recall.
 
