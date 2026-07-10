@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800">
+  <rect width="1280" height="800" fill="#f4f7fc"/>
+  <text x="640" y="95" text-anchor="middle" font-family="Arial,sans-serif" font-size="45" font-weight="700" fill="#17233d">Local processing. Narrow access.</text>
+  <text x="640" y="141" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" fill="#5c6a82">Clear controls for privacy-conscious AI-assisted work.</text>
+  <g transform="translate(85 205)" font-family="Arial,sans-serif">
+    <g><rect width="515" height="500" rx="20" fill="#fff" stroke="#d5dfed"/>
+      <text x="30" y="52" font-size="22" font-weight="700" fill="#17233d">Privacy by design</text>
+      <g font-size="18" fill="#34425c">
+        <circle cx="42" cy="102" r="13" fill="#dff9ec"/><path d="M36 102l5 5 9-11" fill="none" stroke="#199163" stroke-width="3"/><text x="68" y="109">No clipboardRead permission</text>
+        <circle cx="42" cy="160" r="13" fill="#dff9ec"/><path d="M36 160l5 5 9-11" fill="none" stroke="#199163" stroke-width="3"/><text x="68" y="167">No background clipboard monitoring</text>
+        <circle cx="42" cy="218" r="13" fill="#dff9ec"/><path d="M36 218l5 5 9-11" fill="none" stroke="#199163" stroke-width="3"/><text x="68" y="225">No text uploads or analytics</text>
+        <circle cx="42" cy="276" r="13" fill="#dff9ec"/><path d="M36 276l5 5 9-11" fill="none" stroke="#199163" stroke-width="3"/><text x="68" y="283">No copied or pasted text storage</text>
+        <circle cx="42" cy="334" r="13" fill="#dff9ec"/><path d="M36 334l5 5 9-11" fill="none" stroke="#199163" stroke-width="3"/><text x="68" y="341">Only supported AI sites</text>
+      </g>
+      <rect x="30" y="388" width="455" height="76" rx="12" fill="#eef4ff"/>
+      <text x="51" y="419" font-size="16" font-weight="700" fill="#2b579e">Stored settings only</text>
+      <text x="51" y="448" font-size="15" fill="#4f6384">Mode, toggles, and per-site preferences.</text>
+    </g>
+    <g transform="translate(555 0)"><rect width="555" height="500" rx="20" fill="#fff" stroke="#d5dfed"/>
+      <text x="30" y="52" font-size="22" font-weight="700" fill="#17233d">Controls that fit your workflow</text>
+      <g transform="translate(30 83)">
+        <rect width="495" height="75" rx="12" fill="#f5f7fb"/><circle cx="34" cy="38" r="14" fill="#295fc4"/><circle cx="34" cy="38" r="6" fill="#fff"/><text x="66" y="34" font-size="17" font-weight="700" fill="#25324b">ASCII Warning</text><text x="66" y="56" font-size="14" fill="#68768d">Review changes before copying.</text>
+        <g transform="translate(0 88)"><rect width="495" height="75" rx="12" fill="#f5f7fb"/><circle cx="34" cy="38" r="14" fill="#fff" stroke="#295fc4" stroke-width="3"/><text x="66" y="34" font-size="17" font-weight="700" fill="#25324b">Auto ASCII Copy</text><text x="66" y="56" font-size="14" fill="#68768d">Copy the clean version automatically.</text></g>
+        <g transform="translate(0 176)"><rect width="495" height="75" rx="12" fill="#f5f7fb"/><circle cx="34" cy="38" r="14" fill="#fff" stroke="#295fc4" stroke-width="3"/><text x="66" y="34" font-size="17" font-weight="700" fill="#25324b">Opt-in secret paste guard</text><text x="66" y="56" font-size="14" fill="#68768d">Pause likely credentials before paste.</text></g>
+        <g transform="translate(0 286)"><rect width="495" height="72" rx="12" fill="#e8fff3"/><text x="24" y="31" font-size="16" font-weight="700" fill="#167653">Master and per-site toggles</text><text x="24" y="55" font-size="14" fill="#436a5c">Turn protection on only where you want it.</text></g>
+      </g>
+    </g>
+  </g>
+</svg>

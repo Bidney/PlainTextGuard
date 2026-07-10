@@ -4,7 +4,7 @@
   const DEFAULT_SETTINGS = {
     enabled: true,
     disabledSites: [],
-    pasteGuard: true,
+    pasteGuard: false,
     mode: "warn",
     strictAscii: false,
     showSuccessToast: true
@@ -56,7 +56,7 @@
       if (modeEl) modeEl.checked = true;
 
       enabledGlobalEl.checked = settings.enabled !== false;
-      pasteGuardEl.checked = settings.pasteGuard !== false;
+      pasteGuardEl.checked = settings.pasteGuard === true;
       strictAsciiEl.checked = Boolean(settings.strictAscii);
       showSuccessToastEl.checked = settings.showSuccessToast !== false;
 

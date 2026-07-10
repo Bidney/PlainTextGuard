@@ -30,7 +30,7 @@
 - Upload 128x128 icon.
 - Upload at least one 1280x800 or 640x400 screenshot.
 - Upload small promo tile, 440x280.
-- Set visibility to Private for beta.
-- Add trusted testers or a Google Group.
+- Set visibility to Public for launch.
+- Select all supported regions unless a deliberate regional restriction is required.
 - Add privacy policy URL.
 - Add support URL.

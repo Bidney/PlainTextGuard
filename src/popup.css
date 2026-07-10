@@ -89,6 +89,30 @@ small {
   font-size: 12px;
 }
 
+.support p {
+  margin-bottom: 10px;
+}
+
+.donate {
+  display: inline-block;
+  padding: 9px 13px;
+  border-radius: 7px;
+  background: #376fe8;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.donate:hover,
+.donate:focus-visible {
+  background: #2559c7;
+}
+
+.support > small {
+  margin-top: 8px;
+}
+
 .check input:disabled,
 .check input:disabled + span {
   cursor: default;

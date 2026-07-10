@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="280" viewBox="0 0 440 280">
+  <rect width="440" height="280" fill="#1d2d4c"/>
+  <circle cx="404" cy="25" r="105" fill="#2f64c7" opacity=".5"/>
+  <rect x="38" y="40" width="66" height="66" rx="18" fill="#fff"/><text x="50" y="87" font-family="Arial,sans-serif" font-size="31" font-weight="700" fill="#295fc4">PT</text>
+  <text x="38" y="157" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#fff">PlainText Guard</text>
+  <text x="38" y="197" font-family="Arial,sans-serif" font-size="19" fill="#d2ddf1">Safer AI copy &amp; paste</text>
+  <rect x="38" y="229" width="164" height="5" rx="3" fill="#4adea0"/>
+</svg>

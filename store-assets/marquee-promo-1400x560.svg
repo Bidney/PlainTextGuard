@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="560" viewBox="0 0 1400 560">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#15243f"/><stop offset="1" stop-color="#295fc4"/></linearGradient></defs>
+  <rect width="1400" height="560" fill="url(#g)"/>
+  <circle cx="1260" cy="30" r="290" fill="#fff" opacity=".06"/><circle cx="60" cy="590" r="270" fill="#42d59a" opacity=".12"/>
+  <g transform="translate(90 105)" font-family="Arial,sans-serif">
+    <rect width="90" height="90" rx="24" fill="#fff"/><text x="17" y="64" font-size="43" font-weight="700" fill="#295fc4">PT</text>
+    <text x="0" y="245" font-size="60" font-weight="700" fill="#fff">Safer AI</text>
+    <text x="0" y="307" font-size="60" font-weight="700" fill="#fff">copy &amp; paste.</text>
+    <text x="4" y="356" font-size="22" fill="#d2ddf1">Clean formatting. Catch secrets. Keep processing local.</text>
+    <text x="4" y="420" font-size="18" fill="#bcd0ef">Free · Open source · No analytics</text>
+  </g>
+  <g transform="translate(865 95)" font-family="Arial,sans-serif">
+    <rect width="430" height="370" rx="24" fill="#fff"/>
+    <text x="28" y="54" font-size="20" font-weight="700" fill="#17233d">PlainText Guard</text>
+    <g transform="translate(28 82)"><rect width="374" height="70" rx="12" fill="#eef4ff"/><circle cx="34" cy="35" r="16" fill="#295fc4"/><text x="27" y="41" font-size="18" font-weight="700" fill="#fff">A</text><text x="66" y="31" font-size="17" font-weight="700" fill="#25324b">Copy clean text</text><text x="66" y="52" font-size="13" fill="#63718a">Review or automate ASCII-safe cleanup.</text></g>
+    <g transform="translate(28 168)"><rect width="374" height="70" rx="12" fill="#fff0f1"/><circle cx="34" cy="35" r="16" fill="#d44b57"/><text x="29" y="42" font-size="20" font-weight="700" fill="#fff">!</text><text x="66" y="31" font-size="17" font-weight="700" fill="#25324b">Block pasted secrets</text><text x="66" y="52" font-size="13" fill="#63718a">Pause likely credentials before the prompt.</text></g>
+    <g transform="translate(28 254)"><rect width="374" height="70" rx="12" fill="#e8fff3"/><circle cx="34" cy="35" r="16" fill="#22a66f"/><path d="M27 35l5 5 10-12" fill="none" stroke="#fff" stroke-width="3"/><text x="66" y="31" font-size="17" font-weight="700" fill="#25324b">Local processing</text><text x="66" y="52" font-size="13" fill="#63718a">No text uploads, storage, or analytics.</text></g>
+  </g>
+</svg>

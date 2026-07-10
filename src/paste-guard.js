@@ -4,7 +4,7 @@
   const DEFAULT_SETTINGS = {
     enabled: true,
     disabledSites: [],
-    pasteGuard: true
+    pasteGuard: false
   };
 
   const MIN_SCAN_LENGTH = 12;

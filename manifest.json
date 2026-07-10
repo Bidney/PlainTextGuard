@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "PlainText Guard",
+  "name": "PlainText Guard - Safe AI Copy & Paste",
   "short_name": "PlainText Guard",
-  "version": "0.3.0",
-  "description": "Copy clean ASCII-safe text from supported AI sites without reading the clipboard in the background.",
+  "version": "0.3.1",
+  "description": "Clean AI-copied text and block secrets before they are pasted into supported AI chats, entirely on-device.",
   "homepage_url": "https://github.com/bidney/PlainTextGuard",
   "permissions": [
     "storage",

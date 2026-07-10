@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800">
+  <rect width="1280" height="800" fill="#f4f7fc"/>
+  <circle cx="1160" cy="60" r="230" fill="#dce8ff"/>
+  <text x="70" y="92" font-family="Arial,sans-serif" font-size="46" font-weight="700" fill="#17233d">Clean formatting before it leaves the AI chat.</text>
+  <text x="72" y="137" font-family="Arial,sans-serif" font-size="22" fill="#586881">Review hidden Unicode and typography issues during a user-initiated copy.</text>
+  <g transform="translate(70 195)" font-family="Arial,sans-serif">
+    <rect width="1140" height="520" rx="22" fill="#fff" stroke="#d4deed" stroke-width="2"/>
+    <g transform="translate(34 36)">
+      <rect width="490" height="448" rx="16" fill="#f7f9fd"/>
+      <rect x="24" y="22" width="46" height="46" rx="12" fill="#295fc4"/><text x="35" y="54" font-size="22" font-weight="700" fill="#fff">AI</text>
+      <text x="88" y="48" font-size="19" font-weight="700" fill="#1d2941">Selected response text</text>
+      <text x="24" y="112" font-size="18" fill="#465570">“This workflow is ready — review it…</text>
+      <text x="24" y="146" font-size="18" fill="#465570">• Validate the output</text>
+      <text x="24" y="180" font-size="18" fill="#465570">→ Send it to the client”</text>
+      <rect x="24" y="230" width="438" height="1" fill="#d9e1ee"/>
+      <text x="24" y="270" font-size="15" font-weight="700" fill="#67758d">PLAIN TEXT GUARD CHECKS</text>
+      <text x="24" y="310" font-size="17" fill="#465570">Smart quotes · em dash · ellipsis</text>
+      <text x="24" y="344" font-size="17" fill="#465570">Bullet · arrow · hidden characters</text>
+      <text x="24" y="402" font-size="15" fill="#718099">Only the text you selected is processed.</text>
+    </g>
+    <g transform="translate(566 48)">
+      <rect width="532" height="424" rx="18" fill="#fff" stroke="#91a4c4" stroke-width="2"/>
+      <text x="30" y="50" font-size="25" font-weight="700" fill="#17233d">PlainText Guard found 6 issues</text>
+      <text x="30" y="84" font-size="16" fill="#64728a">Choose what should be copied.</text>
+      <g font-size="17" fill="#31405c">
+        <circle cx="39" cy="127" r="6" fill="#295fc4"/><text x="57" y="133">2 smart quotes → straight quotes</text>
+        <circle cx="39" cy="168" r="6" fill="#295fc4"/><text x="57" y="174">1 em dash → hyphen</text>
+        <circle cx="39" cy="209" r="6" fill="#295fc4"/><text x="57" y="215">1 ellipsis → three periods</text>
+        <circle cx="39" cy="250" r="6" fill="#295fc4"/><text x="57" y="256">1 bullet and 1 arrow → ASCII</text>
+      </g>
+      <rect x="30" y="292" width="472" height="54" rx="10" fill="#f1f5fb"/>
+      <text x="47" y="325" font-size="15" fill="#52617a">"This workflow is ready - review it..."</text>
+      <rect x="30" y="364" width="192" height="44" rx="9" fill="#295fc4"/><text x="51" y="392" font-size="16" font-weight="700" fill="#fff">Copy ASCII-safe</text>
+      <rect x="235" y="364" width="122" height="44" rx="9" fill="#edf1f7"/><text x="264" y="392" font-size="16" font-weight="700" fill="#36445d">Original</text>
+      <text x="382" y="391" font-size="15" fill="#718099">Cancel</text>
+    </g>
+  </g>
+</svg>

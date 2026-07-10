@@ -1,6 +1,6 @@
 # Chrome Web Store Assets
 
-This folder contains draft store assets.
+This folder contains the Chrome Web Store launch assets for PlainText Guard 0.3.1. Matching SVG source files are included for future edits.
 
 ## Screenshots
 
@@ -11,6 +11,8 @@ Included:
 - screenshot-1-copy-review-1280x800.png
 - screenshot-2-popup-settings-1280x800.png
 - screenshot-3-privacy-1280x800.png
+
+The screenshots cover ASCII-safe copy review, local secret-paste protection, and privacy/settings controls.
 
 ## Promotional images
 

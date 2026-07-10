@@ -66,8 +66,8 @@
       <label class="check">
         <input type="checkbox" id="pasteGuard">
         <span>
-          <strong>Block pasted secrets</strong>
-          <small>Warns before API keys, tokens, or private keys reach the chat. Detection runs locally.</small>
+          <strong>Enable local secret paste guard</strong>
+          <small>When enabled, pasted text is checked locally for API keys, tokens, or private keys before it reaches the chat. Off by default.</small>
         </span>
       </label>
     </section>
@@ -100,6 +100,13 @@
         <li>Does not read the clipboard in the background.</li>
         <li>Does not upload or store copied text.</li>
       </ul>
+    </section>
+
+    <section class="card support">
+      <h2>Support development</h2>
+      <p>PlainText Guard is free, with no ads or analytics. If it saves you time, you can optionally support its development.</p>
+      <a class="donate" href="https://buycoffee.to/bidney" target="_blank" rel="noopener noreferrer">☕ Buy Eugene a coffee</a>
+      <small>Donating is optional and does not unlock or change any feature.</small>
     </section>
 
     <p id="status" class="status" aria-live="polite"></p>

@@ -8,9 +8,9 @@ PlainText Guard is not an AI detector and is not positioned as a tool to hide AI
 
 ## Current status
 
-Version: 0.3.0
+Version: 0.3.1
 
-This is an MVP release intended for invite-only beta distribution through the Chrome Web Store or local unpacked testing.
+This release is prepared for public distribution through the Chrome Web Store and local unpacked testing.
 
 ## Supported source sites
 
@@ -67,7 +67,7 @@ Pasting text on a supported AI site is checked locally for credentials before it
 - High-confidence matches (AWS, GitHub, Slack, Stripe, Google, OpenAI, and Anthropic key formats, validated JWTs, PEM private key blocks) block the paste and offer Paste without secrets, Paste anyway, or Cancel.
 - Lower-confidence matches (high-entropy strings next to words like key, token, or secret) let the paste through and show a warning instead.
 
-Detection runs entirely in the browser. Nothing is uploaded, stored, or logged. The paste guard can be turned off in the popup.
+Detection runs entirely in the browser. Nothing is uploaded, stored, or logged. The paste guard is off by default and begins checking pasted text only after the user explicitly enables it in the popup.
 
 ## Turning it on and off
 
@@ -123,7 +123,11 @@ To build the upload ZIP:
 npm run package:webstore
 ```
 
-The output is written to `dist/plaintext-guard-webstore-0.3.0.zip`.
+The output is written to `dist/plaintext-guard-webstore-0.3.1.zip`.
+
+## Support development
+
+PlainText Guard is free, open source, and has no ads or analytics. If it saves you time, you can optionally [buy Eugene a coffee](https://buycoffee.to/bidney). Donating does not unlock or change any feature.
 
 ## Test text
 

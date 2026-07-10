@@ -2,15 +2,17 @@
 
 ## Extension name
 
-PlainText Guard
+PlainText Guard - Safe AI Copy & Paste
 
 ## Short description
 
-Copy ASCII-safe text from supported AI sites without background clipboard reading.
+Clean AI-copied text and block secrets before they reach supported AI chats, entirely on-device.
 
 ## Detailed description
 
-PlainText Guard helps QA engineers, technical writers, developers, finance-modeling workers, and delivery teams keep copied AI-site text clean, portable, and client-ready.
+PlainText Guard protects the text you copy from and paste into supported AI assistant sites, entirely in your browser.
+
+It helps developers, security and cloud engineers, QA teams, technical writers, analysts, and delivery teams keep AI-assisted workflows clean and safer. Copy text without hidden Unicode surprises, and catch likely API keys, tokens, JWTs, or private keys before they reach an AI chat.
 
 It detects non-ASCII formatting characters such as smart quotes, em dashes, en dashes, ellipses, non-breaking spaces, zero-width characters, bullets, arrows, and similar characters. It can warn before copying, copy an ASCII-safe version automatically, or show a style review before text reaches tickets, emails, code reviews, client deliverables, and documentation.
 
@@ -23,13 +25,17 @@ Key features:
 - Offers one-click ASCII-safe copy.
 - Supports ASCII Warning, Auto ASCII Copy, and Style Review modes.
 - Supports optional Strict ASCII cleanup.
+- Provides an opt-in secret paste guard, off by default, that detects high-confidence API keys, tokens, JWTs, and private-key blocks before paste.
+- Offers local redaction, paste-anyway, and cancel controls.
+- Provides master and per-site on/off controls.
 - Processes text locally in the browser.
 - Does not read the clipboard in the background.
 - Does not request clipboardRead permission.
 - Does not monitor paste destinations.
 - Does not upload or store copied text.
+- Makes no analytics or telemetry requests.
 
-Supported source sites in this MVP:
+Supported AI sites:
 
 - ChatGPT
 - Claude
@@ -54,6 +60,10 @@ Productivity
 
 English
 
-## Suggested visibility for beta
+## Suggested visibility
 
-Private, with access limited to trusted testers or a Google Group.
+Public, in all supported regions.
+
+## Optional support disclosure
+
+The popup contains an optional external BuyCoffee link. No functionality requires payment, and donating does not unlock or change any feature.

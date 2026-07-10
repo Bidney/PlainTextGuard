@@ -2,6 +2,16 @@
 
 All notable changes to PlainText Guard are documented here.
 
+## 0.3.1 - 2026-07-10
+
+Chrome Web Store public-release preparation.
+
+- Added a clearly optional BuyCoffee support button to the popup. It opens only when clicked, requires no new permission, and does not unlock or change any feature.
+- Made the sensitive secret-paste inspection explicitly opt-in. It is off by default and begins only after the user enables the clearly disclosed popup toggle.
+- Updated the extension name and summary to describe both local ASCII cleanup and secret-paste protection accurately.
+- Updated the privacy policy, store listing, submission notes, and release documentation.
+- Prepared public distribution metadata and refreshed the Web Store package version.
+
 ## 0.3.0 - 2026-07-09
 
 Secret paste guard and detection quality overhaul.
